@@ -4,11 +4,11 @@ public class Game
 {
 	boolean isGameRunning = true;
 	// UserInput input = new UserInput();
-	//Grid grid = new Grid();
+	Grid grid = new Grid();
 	
 	private boolean checkOutOfBoundsY(int newPosition)
 	{
-		if(newPosition < 0 ||  newPosition > grid.getGridSizeY()) 
+		if(newPosition < 0 ||  newPosition > grid.getGridSize()) 
 			return false;
 		
 		return true;
@@ -16,7 +16,7 @@ public class Game
 	
 	private boolean checkOutOfBoundsX(int newPosition)
 	{
-		if(newPosition < 0 ||  newPosition > grid.getGridSizeX()) 
+		if(newPosition < 0 ||  newPosition > grid.getGridSize()) 
 			return false;
 		
 		return true;
@@ -24,7 +24,7 @@ public class Game
 	
 	private boolean userHasReachedGoal() 
 	{
-		if((grid.getX == grid.getGoldX()) && (grid.getY() == grid.getGoldY())) 
+		if((grid.getCurrent_x() == grid.getTreasure_x()) && (grid.getCurrent_y() == grid.getTreasure_y())) 
 			return true;
 		
 		return false;
@@ -32,67 +32,63 @@ public class Game
 	
 	private int getDistanceX()
 	{
-		return abs(grid.getX() - grid.getGoldX());
+		return Math.abs(grid.getCurrent_x() - grid.getTreasure_x());
 	}
 	
 	private int getDistanceY()
 	{
-		return abs(grid.getY() - grid.getGoldY());
+		return Math.abs(grid.getCurrent_y() - grid.getTreasure_y());
 	}
 	
 	private void moveNorth() 
 	{
-		int newPosition = grid.getY()+1;
+		int newPosition = grid.getCurrent_y()+1;
 		boolean check = checkOutOfBoundsY(newPosition);
 		if (!check)
 		{
 			outOfBounds();
-			continue;
 		}
 		else {
-			grid.setY(newPosition);
+			grid.setCurrent_y(newPosition);
 		}
 	}
 	
 	private void moveSouth() 
 	{
-		int newPosition = grid.getY()-1;
+		int newPosition = grid.getCurrent_y()-1;
 		boolean check = checkOutOfBoundsY(newPosition);
 		if (!check)
 		{
 			outOfBounds();
-			continue;
 		}
 		else {
-			grid.setX(newPosition);
+			grid.setCurrent_y(newPosition);
 		}
 	}
 	
 	private void moveEast()
 	{
-		int newPosition = grid.getX()+1;
+		int newPosition = grid.getCurrent_x()+1;
 		boolean check = checkOutOfBoundsX(newPosition);
 		if (!check)
 		{
 			outOfBounds();
-			continue;
 		}
 		else {
-			grid.setX(newPosition);
+			grid.setCurrent_x(newPosition);
 		}
 	}
 	
 	private void moveWest()
 	{
-		int newPosition = grid.getX()-1;
+		int newPosition = grid.getCurrent_x()-1;
 		boolean check = checkOutOfBoundsX(newPosition);
 		if (!check)
 		{
 			outOfBounds();
-			continue;
 		}
 		else {
-			grid.setX(newPosition);
+			grid.setCurrent_x(newPosition);
 		}
 	}
 	
@@ -106,20 +102,22 @@ public class Game
 		while(isGameRunning) 
 		{
 			//String userDirection = input.prompt();
-			switch (userDirection) 
+			String direction = "West";
+			if (direction == "North")
 			{
-				case "North" :
-					moveNorth();
-					break;
-				case "East" :
-					moveEast();
-					break;
-				case "West" :
-					moveWest();
-					break;
-				case "South" :
-					moveSouth();
-					break;
+				moveNorth();// TO DO - CHANGE BACK TO USER  
+			}
+			else if (direction == "South")
+			{
+				moveSouth();
+			}
+			else if (direction == "East")
+			{
+				moveEast();
+			}
+			else
+			{
+				moveWest();
 			}
 			
 			if(userHasReachedGoal())

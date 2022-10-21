@@ -12,6 +12,8 @@ public class App
         Grid grid = new Grid();
         System.out.println( grid.getCurrent_x() + ", " + grid.getCurrent_y() );
         System.out.println( grid.getTreasure_x() + ", " + grid.getTreasure_y() );
+        Game game = new Game();
+        game.startGame();
         
     }
 }

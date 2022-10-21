@@ -3,12 +3,18 @@ package com.lbg.coh2;
 public class Game
 {
 	boolean isGameRunning = true;
-	// UserInput input = new UserInput();
+	UserInput input = new UserInput();
 	Grid grid = new Grid();
+	
+	public Game()
+	{
+        System.out.println( grid.getCurrent_x() + ", " + grid.getCurrent_y() );
+        System.out.println( grid.getTreasure_x() + ", " + grid.getTreasure_y() );
+	}
 	
 	private boolean checkOutOfBoundsY(int newPosition)
 	{
-		if(newPosition < 0 ||  newPosition > grid.getGridSize()) 
+		if(newPosition < 0 ||  newPosition >= grid.getGridSize()) 
 			return false;
 		
 		return true;
@@ -16,7 +22,7 @@ public class Game
 	
 	private boolean checkOutOfBoundsX(int newPosition)
 	{
-		if(newPosition < 0 ||  newPosition > grid.getGridSize()) 
+		if(newPosition < 0 ||  newPosition >= grid.getGridSize()) 
 			return false;
 		
 		return true;
@@ -42,7 +48,7 @@ public class Game
 	
 	private void moveNorth() 
 	{
-		int newPosition = grid.getCurrent_y()+1;
+		int newPosition = grid.getCurrent_y()-1;
 		boolean check = checkOutOfBoundsY(newPosition);
 		if (!check)
 		{
@@ -55,7 +61,7 @@ public class Game
 	
 	private void moveSouth() 
 	{
-		int newPosition = grid.getCurrent_y()-1;
+		int newPosition = grid.getCurrent_y()+1;
 		boolean check = checkOutOfBoundsY(newPosition);
 		if (!check)
 		{
@@ -100,22 +106,24 @@ public class Game
 	public void startGame()
 	{
 		while(isGameRunning) 
-		{
-			//String userDirection = input.prompt();
-			String direction = "West";
-			if (direction == "North")
+		{	
+			
+			String direction = input.prompt();
+
+			
+			if (direction.equals("North"))
 			{
-				moveNorth();// TO DO - CHANGE BACK TO USER  
+				moveNorth();
 			}
-			else if (direction == "South")
+			else if (direction.equals("South"))
 			{
 				moveSouth();
 			}
-			else if (direction == "East")
+			else if (direction.equals("East"))
 			{
 				moveEast();
 			}
-			else
+			else if (direction.equals("West"))
 			{
 				moveWest();
 			}

@@ -4,32 +4,18 @@ import java.util.Random;
 
 public class Grid
 {
-	private int start_y=0;
 	private int treasure_x;
 	private int treasure_y;
-	private int gridSize;
+	private int gridSize = 10;
 	private int current_x;
 	private int current_y;
 	
-	private int start_x;
-	public int getStart_x() {
-		return start_x;
+	public Grid()
+	{
+		setStartPos();
+		setTreasurePos();
 	}
-
-	public void setStart_x(int start_x) {
-		this.start_x = start_x;
-		this.current_x=start_x;
-	}
-
-	public int getStart_y() {
-		return start_y;
-	}
-
-	public void setStart_y(int start_y) {
-		this.start_y = start_y;
-		this.current_x=start_x;
-	}
-
+	
 	public int getTreasure_x() {
 		return treasure_x;
 	}
@@ -70,11 +56,31 @@ public class Grid
 		this.current_y = current_y;
 	}
 	
-	public int startposition_x()
+	public void setStartPos()
 	{
 		Random rand = new Random();
-		start_x = rand.nextInt(gridSize);
-		return start_x;
+		int i = rand.nextInt(1);
+		if ( i == 1)
+		{
+			int x = rand.nextInt(gridSize);
+			setCurrent_x(x);
+			setCurrent_y(0);
+		}
+		if ( i == 0)
+		{
+			int y = rand.nextInt(gridSize);
+			setCurrent_x(0);
+			setCurrent_y(y);
+		}	
+	}
+	
+	public void setTreasurePos()
+	{
+		Random rand = new Random();
+		int x = rand.nextInt(gridSize);
+		int y = rand.nextInt(gridSize);
+		setTreasure_x(x);
+		setTreasure_y(y);	
 	}
 	
 }

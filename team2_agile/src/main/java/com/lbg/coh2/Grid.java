@@ -7,7 +7,8 @@ public class Grid
 	private int treasurex;
 	private int treasurey;
 	private int gridSize;
-	
+	private int current_x;
+	private int current_y;
 	public int getStartx() {
 		return startx;
 	}
@@ -37,6 +38,15 @@ public class Grid
 	}
 	public void setGridSize(int gridSize) {
 		this.gridSize = gridSize;
+	}
+	public int startpostion_x()
+	{
+		//x
+		return 0;
+	}
+	public int startpostion_y()
+	{
+		return 0;
 	}
 	
 	
